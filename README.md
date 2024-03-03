@@ -1,10 +1,10 @@
 # Meso iOS Example
 
-A reference implementation for integration Meso's on/off ramps into an iOS application.
+A reference implementation for integrating Meso's on/off ramps into iOS applications.
 
 > For more details on the Meso integration, view the [meso-js docs](https://github.com/meso-network/meso-js/blob/main/packages/meso-js/README.md).
 
-Currently, Meso does not have an official iOS SDK. However, this repo demonstrates the steps required to use Meso in an iOS application. The built-in helper library:
+Meso does not have an official iOS SDK. However, this repo demonstrates the steps required to use Meso in an iOS application. Instead of rendering the Meso experience inside an iframe, this uses a WebView. The example helper library does two things:
 
 - Manages the lifecycle a WebView ([WKWebView](https://developer.apple.com/documentation/webkit/wkwebview)) that renders the Meso transfer experience.
 - Configures `postMessage` capabilities between the Meso window and your application. See [`Events`](#events) for more.
