@@ -331,7 +331,7 @@ internal struct MesoWebView: UIViewRepresentable {
             }
             
             guard let body = message.body as? String else {
-                print("[Error]: Message body is not a String. \(message.body)")
+                print("[Error]: message.body is not a String. \(message.body)")
                 return
             }
             
