@@ -330,18 +330,15 @@ internal struct MesoWebView: UIViewRepresentable {
                 return
             }
             
-            // First, ensure the message body can be cast to a [String: Any] dictionary
-            guard let body = message.body as? [String: Any] else {
-                print("[Error]: Message body is not a dictionary")
+            guard let body = message.body as? String else {
+                print("[Error]: message.body is not a String. \(message.body)")
                 return
             }
             
-            // Convert the Swift dictionary to JSON data
             do {
-                let jsonData = try JSONSerialization.data(withJSONObject: body, options: [])
+                let messageData: Data = body.data(using: .utf8)!
                 let decoder = JSONDecoder()
-                let decodedMessage = try decoder.decode(ReceivedPostMessageBody.self, from: jsonData)
-                
+                let decodedMessage = try decoder.decode(ReceivedPostMessageBody.self, from: messageData)
                 let encoder = JSONEncoder()
                 
                 // Dispatch events based on the structure of the `payload` or the `kind`.
@@ -396,7 +393,7 @@ internal struct MesoWebView: UIViewRepresentable {
                 if let error = error {
                     print("[Error]: Unable to post message to Meso window. \(error)")
                 } else {
-                    print("Message posted to Meso window.")
+                    print("Message posted to Meso WebView.")
                 }
             }
         }
